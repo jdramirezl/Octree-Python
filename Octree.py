@@ -48,14 +48,14 @@ class Box:
         distancex = abs(other.x - self.x)
         distancey = abs(other.y - self.y)
         distancez = abs(other.z - self.z)
-        
+
         if distancex > (self.w / 2 + other.r):
             return False
         if distancey > (self.h / 2 + other.r):
             return False
         if distancez > (self.d / 2 + other.r):
             return False
-        
+
         if distancex <= (self.w / 2):
             return True
         if distancey <= (self.h / 2):
@@ -70,7 +70,6 @@ class Box:
 
     def collides(self, other):
         if type(other) == Sphere:
-            
             return self.sphere_collides(other)
 
         return not (
@@ -144,7 +143,6 @@ class Octree:
 
     def query(self, query: Box, points_in_range):
         if not self.perimeter.collides(query):
-            
             return points_in_range
 
         for point in self.points:
@@ -221,7 +219,6 @@ class Octree:
 
                     red_bee[1].center = (cx, cy)
                     screen.blit(red_bee[0], red_bee[1])
-
 
                 # Draw Rect of side
                 query_rect = pygame.Rect((0, 0), (d1, d2))

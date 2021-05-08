@@ -4,15 +4,16 @@ import pygame
 import time
 import os
 
+
 def save_res(in_range_local, x_local, y_local, z_local, filename):
     destination = './result'
     dir = os.getcwd()
     os.chdir(destination)
     file_name = filename.split("/")[-1]
-    
+
     # Open file
     f = open(file_name, "a")
-    
+
     # Process text
     res = ""
     res += "For point: [{}, {}, {}]\n".format(x_local, y_local, z_local)
@@ -21,11 +22,12 @@ def save_res(in_range_local, x_local, y_local, z_local, filename):
         line = "[{}, {}, {}]\n".format(pnt.x, pnt.y, pnt.z)
         res += line
     res += "Total: {} points\n\n".format(len(in_range_local))
-    
+
     # Write to file and close
     f.write(res)
     f.close()
     os.chdir(dir)
+
 
 def main(points, mins, maxs, name):
     print("Alive")
@@ -55,6 +57,7 @@ def main(points, mins, maxs, name):
         # Get info of Points
         save_res(in_range, x, y, z, name)
 
+
 def process_points():
     # Generate Points
     directory = './datasets'
@@ -67,7 +70,7 @@ def process_points():
         points = []
         min_vals = [math.inf, math.inf, math.inf]
         max_vals = [0, 0, 0]
-        
+
         # Create files
         dir = os.getcwd()
         os.chdir('./result')
@@ -76,7 +79,7 @@ def process_points():
         direc.write("")
         direc.close()
         os.chdir(dir)
-        
+
         while True:
             line = f.readline()
             if not line:
@@ -86,10 +89,9 @@ def process_points():
             max_vals = [max(abs(x), max_vals[0]), max(abs(y), max_vals[1]), max(abs(z), max_vals[2])]
             p = Point(x, y, z)
             points.append(p)
-            
+
         f.close()
         main(points, min_vals, max_vals, file)
-        
 
 
 if __name__ == "__main__":
