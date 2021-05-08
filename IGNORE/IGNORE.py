@@ -73,7 +73,7 @@ def process_points():
 
         # Create files
         dir = os.getcwd()
-        os.chdir('./result')
+        os.chdir('result')
         file_name = file.split("/")[-1]
         direc = open(file_name, "w")
         direc.write("")

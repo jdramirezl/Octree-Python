@@ -84,9 +84,9 @@ class Box:
 
 def get_images():
     # Load Images
-    bee = pygame.image.load("bee.png")
-    bee_blue = pygame.image.load("bee_blue.png")
-    bee_red = pygame.image.load("bee_red.png")
+    bee = pygame.image.load("IGNORE/bee.png")
+    bee_blue = pygame.image.load("IGNORE/bee_blue.png")
+    bee_red = pygame.image.load("IGNORE/bee_red.png")
     bee = pygame.transform.scale(bee, (25, 20))
     bee_blue = pygame.transform.scale(bee_blue, (35, 30))
     bee_red = pygame.transform.scale(bee_red, (40, 35))
