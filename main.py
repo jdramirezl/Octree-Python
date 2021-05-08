@@ -105,7 +105,7 @@ def pygame_show(screen, ot: Octree, points_in_range: list, point: Point, query: 
         pygame.display.update()
 
 
-def main():
+def with_visualization():
     # Data for pygame
     pygame.init()
     screen_width = 1200
@@ -119,18 +119,17 @@ def main():
     limit_query = (200, 200, 200) if is_box_collider else 100
 
     # Create Octree
-    limit = Box(0,0,0, width, height, depth)
+    limit = Box(0, 0, 0, width, height, depth)
     ot = Octree(limit, 4)
 
     # Generate Points
     n_of_points = 100
     points = [
-        Point(-75.5495499995,6.33545000045,1378.75),
-        Point(-75.5504500004,6.33545000045,1326.07),
-        Point(-75.5495499995,6.33454999955,1318.85),
-        Point(-75.5504500004,6.33454999955,1377.63)
+        Point(-75.5495499995, 6.33545000045, 1378.75),
+        Point(-75.5504500004, 6.33545000045, 1326.07),
+        Point(-75.5495499995, 6.33454999955, 1318.85),
+        Point(-75.5504500004, 6.33454999955, 1377.63)
     ]
-    
 
     # Insert points in tree
     for point in points:
@@ -167,7 +166,21 @@ def main():
     pygame.quit()
 
 
+def only_tree():
+    # Create Octree
+    width, height, depth = 0, 0, 0
+    limit = Box(0, 0, 0, width, height, depth)
+    ot = Octree(limit, 4)
+
+    # Create query
+    box_measures = [0, 0, 0]
+    radius = 0
+    x, y, z = 0, 0, 0
+    box_query = Box(x, y, z, *box_measures)
+    sphere_query = Sphere(x, y, z, radius)
+
+    list_of_points_in_range = ot.query(box_query)
+
+
 if __name__ == "__main__":
-    main()
-
-
+    with_visualization()
